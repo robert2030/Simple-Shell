@@ -73,15 +73,18 @@ ssize_t get_input(info_t *info)
 				break;
 			j++;
 		}
+
 		i = j + 1; /* increment past nulled ';'' */
 		if (i >= len) /* reached end of buffer? */
 		{
 			i = len = 0; /* reset position and length */
 			info->cmd_buf_type = CMD_NORM;
 		}
+
 		*buf_p = p; /* pass back pointer to current command position */
 		return (_strlen(p)); /* return length of current command */
 	}
+
 	*buf_p = buf; /* else not a chain, pass back buffer from _getline() */
 	return (r); /* return length of buffer from _getline() */
 }
@@ -165,4 +168,3 @@ void sigintHandler(__attribute__((unused))int sig_num)
 	_puts("$ ");
 	_putchar(BUF_FLUSH);
 }
-
